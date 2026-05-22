@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bộ Tiêu Chí Đánh Giá Năng Lực Lãnh Đạo - PATI Group</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 3px solid #10b981;
+        }
+
+        h1 {
+            color: #1a1a1a;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .hero-box {
+            background: #10b981;
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 35px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+        }
+
+        .hero-box p {
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .section-group {
+            margin-bottom: 40px;
+        }
+
+        .section-group-title {
+            background: #1a1a1a;
+            color: white;
+            padding: 18px 25px;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .competency-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .competency-card {
+            background: #f8f8f8;
+            border: 2px solid #e5e5e5;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .competency-card:hover {
+            border-color: #10b981;
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.15);
+        }
+
+        .card-header {
+            background: white;
+            padding: 20px;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e5e5e5;
+            transition: background 0.2s;
+        }
+
+        .card-header:hover {
+            background: #f8f8f8;
+        }
+
+        .card-title-wrapper {
+            flex: 1;
+        }
+
+        .card-number {
+            color: #10b981;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .card-title {
+            color: #1a1a1a;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .card-subtitle {
+            color: #666;
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        .toggle-icon {
+            font-size: 24px;
+            color: #10b981;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            margin-left: 15px;
+        }
+
+        .competency-card.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .card-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background: white;
+        }
+
+        .competency-card.active .card-content {
+            max-height: 2000px;
+        }
+
+        .card-definition {
+            padding: 20px;
+            background: #ecfdf5;
+            border-left: 4px solid #10b981;
+            margin: 15px;
+            border-radius: 4px;
+        }
+
+        .card-definition strong {
+            color: #10b981;
+            font-size: 14px;
+        }
+
+        .card-definition p {
+            color: #666;
+            font-size: 13px;
+            margin-top: 5px;
+            line-height: 1.6;
+        }
+
+        .levels-table {
+            padding: 0 15px 20px 15px;
+        }
+
+        .level-row {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 15px;
+            padding: 15px;
+            margin-bottom: 12px;
+            background: #f8f8f8;
+            border-radius: 6px;
+            border-left: 4px solid #10b981;
+        }
+
+        .level-row:nth-child(1) { border-left-color: #ef4444; }
+        .level-row:nth-child(2) { border-left-color: #f59e0b; }
+        .level-row:nth-child(3) { border-left-color: #10b981; }
+        .level-row:nth-child(4) { border-left-color: #3b82f6; }
+        .level-row:nth-child(5) { border-left-color: #8b5cf6; }
+
+        .level-label {
+            font-weight: 700;
+            font-size: 14px;
+            color: #1a1a1a;
+        }
+
+        .level-number {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 3px;
+        }
+
+        .level-description {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .expand-all-btn {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background 0.2s;
+        }
+
+        .expand-all-btn:hover {
+            background: #059669;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e5e5;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+
+        @media (max-width: 1200px) {
+            .competency-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            .competency-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .level-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <h1>🎯 BỘ TIÊU CHÍ ĐÁNH GIÁ NĂNG LỰC LÃNH ĐẠO</h1>
+        <div class="subtitle">5 Levels Framework - PATI Group Leadership Competency Model</div>
+    </div>
+
+    <!-- Hero Box -->
+    <div class="hero-box">
+        <p><strong>Cách sử dụng:</strong> Đánh giá từng năng lực theo thang 1-5. <strong>Level 3 = yêu cầu tối thiểu</strong> cho vị trí quản lý.</p>
+    </div>
+
+    <!-- Expand All Button -->
+    <button class="expand-all-btn" onclick="toggleAll()">▼ Mở rộng tất cả</button>
+
+    <!-- GROUP I: QUẢN LÝ & KIẾN TẠO HỆ THỐNG -->
+    <div class="section-group">
+        <div class="section-group-title">I. NHÓM NĂNG LỰC QUẢN LÝ & KIẾN TẠO HỆ THỐNG</div>
+        
+        <div class="competency-grid">
+            <!-- 1. Thiết lập mục tiêu -->
+            <div class="competency-card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div class="card-title-wrapper">
+                        <div class="card-number">01</div>
+                        <div class="card-title">THIẾT LẬP MỤC TIÊU</div>
+                        <div class="card-subtitle">Goal Setting</div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-definition">
+                        <strong>Định nghĩa:</strong>
+                        <p>Khả năng tiếp nhận định hướng chiến lược và bóc tách thành mục tiêu đầu ra cụ thể cho phòng ban/nhóm.</p>
+                    </div>
+                    <div class="levels-table">
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 1</span>
+                                Mơ hồ
+                            </div>
+                            <div class="level-description">
+                                Không hiểu rõ mục tiêu chiến lược từ cấp trên. Đặt mục tiêu chung chung, không đo lường được (vd: "làm tốt hơn", "cải thiện chất lượng"). Không phân biệt được outcome vs output.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 2</span>
+                                Sao chép
+                            </div>
+                            <div class="level-description">
+                                Hiểu mục tiêu cấp trên nhưng chỉ biết "copy-paste" xuống cho nhóm. Đặt mục tiêu có số liệu nhưng thiếu logic bóc tách (vd: CEO nói tăng 20% revenue → đặt luôn 20% cho mọi team).
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 3</span>
+                                Bóc tách cơ bản
+                            </div>
+                            <div class="level-description">
+                                Biết bóc tách mục tiêu chiến lược thành các sub-goals cụ thể. Đặt được mục tiêu SMART cho phòng ban. Phân biệt rõ outcome (kết quả cuối) vs output (sản lượng). Tuy nhiên còn cần hỗ trợ khi tính toán trade-off giữa các mục tiêu.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 4</span>
+                                Tính toán chặt
+                            </div>
+                            <div class="level-description">
+                                Bóc tách mục tiêu dựa trên dữ liệu, baseline, growth rate hợp lý. Biết cân đối giữa các mục tiêu (quality vs speed, cost vs innovation). Đặt cả leading indicators (chỉ số dẫn) và lagging indicators (chỉ số kết quả).
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 5</span>
+                                Kiến tạo hệ thống
+                            </div>
+                            <div class="level-description">
+                                Xây dựng hệ thống mục tiêu đa tầng, cascade xuống từng cá nhân. Dự đoán được bottleneck và điều chỉnh mục tiêu proactive. Mục tiêu vừa aggressive vừa achievable, thúc đẩy đột phá nhưng không gây burnout. Có khả năng challenge lại mục tiêu chiến lược nếu bất hợp lý.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Lập kế hoạch -->
+            <div class="competency-card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div class="card-title-wrapper">
+                        <div class="card-number">02</div>
+                        <div class="card-title">LẬP KẾ HOẠCH</div>
+                        <div class="card-subtitle">Planning</div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-definition">
+                        <strong>Định nghĩa:</strong>
+                        <p>Xây dựng lộ trình, kế hoạch hành động chi tiết để hiện thực hóa mục tiêu.</p>
+                    </div>
+                    <div class="levels-table">
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 1</span>
+                                Không có kế hoạch
+                            </div>
+                            <div class="level-description">
+                                Làm theo cảm tính, ứng biến từng ngày. Không có timeline, milestone. Không lường trước được công việc cần làm.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 2</span>
+                                Kế hoạch mơ hồ
+                            </div>
+                            <div class="level-description">
+                                Có kế hoạch nhưng quá chung chung (vd: "Q2 làm marketing", "tháng 5 tuyển người"). Thiếu breakdown công việc cụ thể, ai làm gì, đến khi nào.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 3</span>
+                                Kế hoạch cơ bản đầy đủ
+                            </div>
+                            <div class="level-description">
+                                Kế hoạch có milestone rõ ràng, phân công người làm, deadline cụ thể. Sử dụng Gantt chart hoặc công cụ project management. Tuy nhiên chưa tính đến dependency (công việc phụ thuộc nhau) và buffer risk.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 4</span>
+                                Kế hoạch chặt chẽ
+                            </div>
+                            <div class="level-description">
+                                Kế hoạch có tính đến thứ tự ưu tiên, dependency, critical path. Dự phòng rủi ro (plan B, buffer time). Tracking tiến độ đều đặn và điều chỉnh kế hoạch khi cần.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 5</span>
+                                Kế hoạch chiến lược
+                            </div>
+                            <div class="level-description">
+                                Kế hoạch đa phương án (best case, worst case, most likely). Tích hợp kế hoạch nhiều phòng ban, đảm bảo synergy. Sử dụng data + assumptions rõ ràng. Kế hoạch linh hoạt (agile) nhưng không mất tập trung (focus).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Tổ chức bộ máy -->
+            <div class="competency-card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div class="card-title-wrapper">
+                        <div class="card-number">03</div>
+                        <div class="card-title">TỔ CHỨC BỘ MÁY</div>
+                        <div class="card-subtitle">Organizing</div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-definition">
+                        <strong>Định nghĩa:</strong>
+                        <p>Nhìn thấu cấu trúc công việc, chia việc, thiết kế đội nhóm logic, không chồng chéo hay bỏ sót.</p>
+                    </div>
+                    <div class="levels-table">
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 1</span>
+                                Lộn xộn
+                            </div>
+                            <div class="level-description">
+                                Không có cấu trúc rõ ràng. Nhiều người làm cùng việc hoặc không ai chịu trách nhiệm. Phân công theo "ai rảnh làm".
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 2</span>
+                                Chia việc đơn giản
+                            </div>
+                            <div class="level-description">
+                                Phân công theo function (marketing, sales, ops) nhưng thiếu rõ ràng về ranh giới. Hay xảy ra tranh chấp "việc này ai làm". Cấu trúc theo "người" chứ không theo "việc".
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 3</span>
+                                Cấu trúc cơ bản rõ ràng
+                            </div>
+                            <div class="level-description">
+                                Có org chart và job description rõ ràng. Mỗi người biết mình làm gì, report cho ai. Tuy nhiên còn có gaps (khoảng trống không ai làm) hoặc overlaps (chồng chéo).
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 4</span>
+                                Thiết kế logic
+                            </div>
+                            <div class="level-description">
+                                Cấu trúc bộ máy dựa trên value chain hoặc workflow thực tế. Không có gaps hay overlaps. Có cơ chế handoff (bàn giao) giữa các bộ phận. Biết khi nào cần thêm headcount, khi nào optimize người hiện tại.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 5</span>
+                                Kiến tạo cấu trúc tối ưu
+                            </div>
+                            <div class="level-description">
+                                Thiết kế bộ máy scalable (dễ mở rộng). Cân bằng giữa chuyên môn hóa (specialization) và linh hoạt (flexibility). Có ma trận RACI rõ ràng. Thiết kế cả formal structure (chính thức) và informal network (mạng lưới phi chính thức) để tổ chức chạy mượt.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Xây dựng quy trình -->
+            <div class="competency-card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div class="card-title-wrapper">
+                        <div class="card-number">04</div>
+                        <div class="card-title">XÂY DỰNG QUY TRÌNH</div>
+                        <div class="card-subtitle">Process Design</div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-definition">
+                        <strong>Định nghĩa:</strong>
+                        <p>Đóng gói công việc thành quy trình chuẩn mực để nhân bản quy mô và thực thi đồng nhất.</p>
+                    </div>
+                    <div class="levels-table">
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 1</span>
+                                Không có quy trình
+                            </div>
+                            <div class="level-description">
+                                Mọi việc làm theo kinh nghiệm cá nhân, không có tài liệu. Người mới không biết làm thế nào. Mỗi người làm một kiểu.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 2</span>
+                                Ghi chép lộn xộn
+                            </div>
+                            <div class="level-description">
+                                Có vài văn bản hướng dẫn nhưng rời rạc, lỗi thời, không ai follow. Quy trình viết theo "văn xuôi", khó hiểu.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 3</span>
+                                Quy trình cơ bản
+                            </div>
+                            <div class="level-description">
+                                Có quy trình chuẩn cho các công việc lặp lại chính. Quy trình có flow chart, step-by-step rõ ràng. Nhân viên mới có thể làm theo. Tuy nhiên quy trình còn cứng nhắc, chưa có cơ chế exception handling (xử lý ngoại lệ).
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 4</span>
+                                Quy trình tối ưu
+                            </div>
+                            <div class="level-description">
+                                Quy trình lean, loại bỏ bước thừa. Có cả quy trình chuẩn và hướng dẫn xử lý exception. Quy trình được review và cải tiến định kỳ. Có metrics đo hiệu quả quy trình.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 5</span>
+                                Hệ thống quy trình
+                            </div>
+                            <div class="level-description">
+                                Xây dựng process library đầy đủ, được phân loại, dễ tìm. Quy trình tích hợp với công cụ (automation). Có governance: ai được sửa quy trình, quy trình approve thay đổi như thế nào. Quy trình vừa chuẩn hóa vừa linh hoạt (standardized but adaptable).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Đảm bảo nguồn lực -->
+            <div class="competency-card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div class="card-title-wrapper">
+                        <div class="card-number">05</div>
+                        <div class="card-title">ĐẢM BẢO NGUỒN LỰC</div>
+                        <div class="card-subtitle">Resource Management</div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-definition">
+                        <strong>Định nghĩa:</strong>
+                        <p>Biết rõ đầu vào cần thiết và có khả năng đàm phán, cung cấp đủ nguồn lực (budget, tools, headcount) cho đội ngũ.</p>
+                    </div>
+                    <div class="levels-table">
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 1</span>
+                                Không ý thức
+                            </div>
+                            <div class="level-description">
+                                Không biết đội cần gì. Giao việc nhưng không cung cấp công cụ, ngân sách. Nhân viên phải tự xoay sở.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 2</span>
+                                Biết cần nhưng không làm được
+                            </div>
+                            <div class="level-description">
+                                Biết đội thiếu gì nhưng không dám hoặc không biết xin. Chấp nhận tình trạng thiếu tài nguyên. Đổ lỗi "công ty không cho".
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 3</span>
+                                Đảm bảo cơ bản
+                            </div>
+                            <div class="level-description">
+                                Biết đội cần gì (tools, budget, headcount) và chủ động xin. Có business case đơn giản khi xin tài nguyên. Đảm bảo 80% nhu cầu cơ bản. Tuy nhiên chưa tối ưu allocation (phân bổ).
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 4</span>
+                                Quản trị chặt
+                            </div>
+                            <div class="level-description">
+                                Lập budget chi tiết, phân bổ tối ưu giữa các initiatives. Tracking utilization (mức độ sử dụng) của tài nguyên. Đàm phán win-win với cấp trên (không chỉ xin mà chứng minh ROI). Biết khi nào cần invest, khi nào cần cut cost.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 5</span>
+                                Tối ưu hóa hệ thống
+                            </div>
+                            <div class="level-description">
+                                Xây dựng hệ thống quản trị tài nguyên dài hạn (3-12 tháng). Dự đoán nhu cầu trước. Tạo ra shared resources hiệu quả (không mỗi team một tool). Balance giữa "đủ để làm việc" và "không lãng phí". Có metrics rõ ràng về resource efficiency.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Kiểm soát & Quản trị rủi ro -->
+            <div class="competency-card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div class="card-title-wrapper">
+                        <div class="card-number">06</div>
+                        <div class="card-title">KIỂM SOÁT & RỦI RO</div>
+                        <div class="card-subtitle">Control & Risk Management</div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-definition">
+                        <strong>Định nghĩa:</strong>
+                        <p>Giám sát, đo lường hiệu quả, xây dựng hệ thống báo cáo và nhận diện sớm rủi ro.</p>
+                    </div>
+                    <div class="levels-table">
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 1</span>
+                                Mù mờ
+                            </div>
+                            <div class="level-description">
+                                Không biết đội đang làm gì, tiến độ ra sao. Phát hiện vấn đề khi đã muộn (crisis mode). Không có reporting.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 2</span>
+                                Kiểm soát lỏng lẻo
+                            </div>
+                            <div class="level-description">
+                                Hỏi han ad-hoc, không có hệ thống. Báo cáo thiếu structure, không có metrics. Phụ thuộc vào nhân viên tự báo cáo (reactive).
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 3</span>
+                                Kiểm soát cơ bản
+                            </div>
+                            <div class="level-description">
+                                Có hệ thống báo cáo định kỳ (weekly/monthly). Tracking KPIs chính. Nhận diện được vấn đề khi đã xảy ra và xử lý kịp thời. Tuy nhiên chưa có early warning system.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 4</span>
+                                Kiểm soát chặt chẽ
+                            </div>
+                            <div class="level-description">
+                                Dashboard real-time hoặc near real-time. Có leading indicators để phát hiện sớm rủi ro. Risk register (danh sách rủi ro) và mitigation plan (kế hoạch giảm thiểu). Phân biệt được signal (tín hiệu thật) vs noise (nhiễu).
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 5</span>
+                                Hệ thống quản trị tích hợp
+                            </div>
+                            <div class="level-description">
+                                Hệ thống giám sát tự động, alert khi có anomaly (bất thường). Risk management proactive: scenario planning, stress testing. Balanced scorecard đầy đủ (financial, customer, internal, learning). Không chỉ kiểm soát vấn đề mà còn optimize performance liên tục.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GROUP II: QUẢN TRỊ CON NGƯỜI -->
+    <div class="section-group">
+        <div class="section-group-title">II. NHÓM NĂNG LỰC QUẢN TRỊ CON NGƯỜI</div>
+        
+        <div class="competency-grid">
+            <!-- 7. Tuyển dụng & Xây dựng đội ngũ -->
+            <div class="competency-card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div class="card-title-wrapper">
+                        <div class="card-number">07</div>
+                        <div class="card-title">TUYỂN DỤNG & XÂY DỰNG TEAM</div>
+                        <div class="card-subtitle">Talent Acquisition & Team Building</div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-definition">
+                        <strong>Định nghĩa:</strong>
+                        <p>Xác định đúng chân dung nhân sự cần thiết, tuyển đúng người, xây đội mạnh.</p>
+                    </div>
+                    <div class="levels-table">
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 1</span>
+                                Tuyển bừa
+                            </div>
+                            <div class="level-description">
+                                Không có chân dung rõ ràng. Tuyển theo "cảm tính" hoặc "ai apply trước". Tỷ lệ người không pass probation cao (>40%).
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 2</span>
+                                Tuyển theo template
+                            </div>
+                            <div class="level-description">
+                                Có JD nhưng copy mẫu, không customize cho nhu cầu thực tế. Phỏng vấn không có cấu trúc, hỏi lung tung. Tuyển được người "okay" nhưng không fit văn hóa hoặc thiếu năng lực cốt lõi.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 3</span>
+                                Tuyển có hệ thống
+                            </div>
+                            <div class="level-description">
+                                Xác định rõ competency cần thiết cho vị trí. JD rõ ràng, phỏng vấn có cấu trúc (behavioral questions). Đánh giá cả hard skills và culture fit. Tỷ lệ retention tốt (>70% ở lại sau 1 năm). Tuy nhiên chưa chủ động build pipeline talent.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 4</span>
+                                Tuyển chiến lược
+                            </div>
+                            <div class="level-description">
+                                Có talent pipeline sẵn (không chờ khi thiếu người mới tuyển). Sử dụng assessment tools (test, case study). Tuyển cả potential (tiềm năng) không chỉ experience. Xây dựng employer branding để attract tốt hơn. Onboarding có hệ thống, giúp người mới thành công nhanh.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 5</span>
+                                Kiến tạo đội ngũ xuất sắc
+                            </div>
+                            <div class="level-description">
+                                Tuyển người giỏi hơn mình. Xây dựng talent pool dài hạn (intern → junior → senior pipeline). Diverse team (đa dạng về skill và background). Có succession plan (kế hoạch kế nhiệm) cho mọi vị trí quan trọng. Team có synergy, không chỉ là tập hợp cá nhân.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Đào tạo & Kèm cặp -->
+            <div class="competency-card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div class="card-title-wrapper">
+                        <div class="card-number">08</div>
+                        <div class="card-title">ĐÀO TẠO & KÈM CẶP</div>
+                        <div class="card-subtitle">Coaching & Development</div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-definition">
+                        <strong>Định nghĩa:</strong>
+                        <p>Đóng vai trò người thầy - hướng dẫn, sửa lỗi, nâng cấp tư duy cho nhân viên.</p>
+                    </div>
+                    <div class="levels-table">
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 1</span>
+                                Không đào tạo
+                            </div>
+                            <div class="level-description">
+                                Giao việc xong bỏ mặc. Nhân viên tự học, tự sai, tự sửa. Khi nhân viên hỏi thì nói "tự nghĩ đi" hoặc "làm thay" luôn.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 2</span>
+                                Hướng dẫn chiếu lệ
+                            </div>
+                            <div class="level-description">
+                                Chỉ show một lần cách làm, không giải thích why. Không có patience để nhân viên học. Feedback kiểu "sai rồi, làm lại" nhưng không nói sai chỗ nào, sửa thế nào.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 3</span>
+                                Coaching cơ bản
+                            </div>
+                            <div class="level-description">
+                                Hướng dẫn rõ ràng cả what và why. Feedback cụ thể, có ví dụ. Tạo môi trường an toàn để nhân viên được phép sai và học. Có 1-on-1 định kỳ. Tuy nhiên chưa có development plan dài hạn cho từng người.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 4</span>
+                                Coaching hệ thống
+                            </div>
+                            <div class="level-description">
+                                Mỗi nhân viên có Individual Development Plan (IDP). Coaching theo mô hình GROW (Goal-Reality-Options-Will). Không chỉ sửa lỗi mà nâng cấp tư duy (mindset shift). Delegate để nhân viên phát triển, không micromanage. Track progress và celebrate wins.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 5</span>
+                                Kiến tạo người kế nhiệm
+                            </div>
+                            <div class="level-description">
+                                Coaching có tầm nhìn dài hạn: chuẩn bị người thay mình. Phát triển nhân viên thành leader tương lai. Tạo learning culture: đội ngũ tự học, peer coaching. Người rời đi vẫn thành công và biết ơn (alumni network mạnh).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. Đánh giá & Khích lệ -->
+            <div class="competency-card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div class="card-title-wrapper">
+                        <div class="card-number">09</div>
+                        <div class="card-title">ĐÁNH GIÁ & KHÍCH LỆ</div>
+                        <div class="card-subtitle">Performance Management & Motivation</div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-definition">
+                        <strong>Định nghĩa:</strong>
+                        <p>Đánh giá công bằng, động viên, gắn kết để tạo môi trường tích cực.</p>
+                    </div>
+                    <div class="levels-table">
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 1</span>
+                                Thiên vị
+                            </div>
+                            <div class="level-description">
+                                Đánh giá theo cảm tính, thích ai khen người đó. Không có tiêu chí rõ ràng. Nhân viên không biết mình đứng ở đâu. Môi trường toxic, bè phái.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 2</span>
+                                Đánh giá mơ hồ
+                            </div>
+                            <div class="level-description">
+                                Có đánh giá nhưng chung chung ("bạn làm tốt", "cần cố gắng hơn"). Không có data, chỉ dựa impression. Reward không công bằng → demotivate người giỏi.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 3</span>
+                                Đánh giá có cấu trúc
+                            </div>
+                            <div class="level-description">
+                                Đánh giá dựa trên KPIs và competencies rõ ràng. Có performance review định kỳ (quarterly/bi-annual). Feedback cụ thể, có evidence. Reward dựa trên performance. Tuy nhiên chưa cá nhân hóa motivation (chưa hiểu sâu động lực mỗi người).
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 4</span>
+                                Quản trị hiệu suất chặt
+                            </div>
+                            <div class="level-description">
+                                Performance management liên tục (continuous feedback), không chỉ review cuối kỳ. Calibration session (đối chiếu đánh giá giữa các manager) để đảm bảo fairness. Hiểu motivation của từng nhân viên (intrinsic vs extrinsic). Tạo psychological safety để nhân viên dám thử thách.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 5</span>
+                                Kiến tạo văn hóa hiệu suất cao
+                            </div>
+                            <div class="level-description">
+                                Talent review định kỳ: 9-box grid, succession planning. Differentiation: thưởng cao cho top performer, coach-out người không phù hợp. Meritocracy: văn hóa "thành tích nói lên tất cả". Không chỉ quản lý performance mà xây dựng high-performance culture.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GROUP III: GIAO TIẾP & LÃNH ĐẠO -->
+    <div class="section-group">
+        <div class="section-group-title">III. NHÓM NĂNG LỰC GIAO TIẾP & LÃNH ĐẠO CẤP CAO</div>
+        
+        <div class="competency-grid">
+            <!-- 10. Giao tiếp -->
+            <div class="competency-card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div class="card-title-wrapper">
+                        <div class="card-number">10</div>
+                        <div class="card-title">GIAO TIẾP</div>
+                        <div class="card-subtitle">Communication</div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-definition">
+                        <strong>Định nghĩa:</strong>
+                        <p>Giao việc đúng, trình bày mạch lạc, tư duy cấu trúc, kỷ luật giao tiếp.</p>
+                    </div>
+                    <div class="levels-table">
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 1</span>
+                                Lộn xộn
+                            </div>
+                            <div class="level-description">
+                                Giao việc không rõ, nhân viên không hiểu cần làm gì. Thông tin rải rác chat/email/meeting. Không phản hồi hoặc phản hồi muộn.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 2</span>
+                                Giao tiếp đơn giản
+                            </div>
+                            <div class="level-description">
+                                Giao việc có what nhưng thiếu why, when, how. Trình bày dài dòng, không trọng tâm. Dùng chat cho mọi việc. Hay hiểu lầm.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 3</span>
+                                Giao tiếp rõ ràng
+                            </div>
+                            <div class="level-description">
+                                Giao việc theo 5W1H. Trình bày có cấu trúc (intro-body-conclusion). Email có subject rõ, format dễ đọc. Meeting có agenda. Phân biệt urgent vs important, chọn đúng kênh.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 4</span>
+                                Giao tiếp hiệu quả
+                            </div>
+                            <div class="level-description">
+                                Ngắn gọn nhưng đầy đủ (concise but complete). Dùng framework (STAR, pyramid principle). Active listening. Tailor message theo audience. Conflict resolution qua giao tiếp.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 5</span>
+                                Giao tiếp bậc thầy
+                            </div>
+                            <div class="level-description">
+                                Tạo alignment nhanh. Storytelling: biến data thành narrative hấp dẫn. Difficult conversations (sa thải, feedback tiêu cực) mà giữ được quan hệ. Executive presence: nói ít nhưng impactful. Writing memo/strategy paper thuyết phục. Cross-cultural communication. Political savvy.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11. Truyền cảm hứng -->
+            <div class="competency-card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div class="card-title-wrapper">
+                        <div class="card-number">11</div>
+                        <div class="card-title">TRUYỀN CẢM HỨNG</div>
+                        <div class="card-subtitle">Inspirational Leadership</div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-definition">
+                        <strong>Định nghĩa:</strong>
+                        <p>Thuyết phục, khiến đội ngũ tin tưởng và hành động với cam kết cao.</p>
+                    </div>
+                    <div class="levels-table">
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 1</span>
+                                Không có tầm ảnh hưởng
+                            </div>
+                            <div class="level-description">
+                                Đội làm theo lệnh, không có passion. Turnover cao. Không ai tự nguyện làm thêm hoặc đóng góp ý tưởng.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 2</span>
+                                Động viên hời hợt
+                            </div>
+                            <div class="level-description">
+                                Nói câu sáo rỗng ("cố lên", "chúng ta làm được"). Không có vision. Đội không tin vào hướng đi.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 3</span>
+                                Tạo động lực cơ bản
+                            </div>
+                            <div class="level-description">
+                                Có vision rõ và truyền đạt được. Celebrate wins, acknowledge contributions. Đội cảm thấy được trân trọng. Motivation chủ yếu extrinsic (tiền, khen thưởng).
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 4</span>
+                                Lãnh đạo truyền cảm hứng
+                            </div>
+                            <div class="level-description">
+                                Connect công việc với purpose lớn hơn. Inspire bằng hành động (walk the talk). Tạo intrinsic motivation: làm vì mission, không chỉ lương. Storytelling mạnh.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 5</span>
+                                Transformational Leader
+                            </div>
+                            <div class="level-description">
+                                Thay đổi mindset đội ngũ, không chỉ hành vi. Tạo movement: đội tự lan tỏa vision. Người trong team thành evangelist. Vision trở thành shared vision. Đội sẵn sàng hy sinh ngắn hạn vì dài hạn. Role model: hành động nhất quán với lời nói (authentic leadership). Legacy: ảnh hưởng lâu dài sau khi rời vị trí.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 12. Chuyên môn tiên phong -->
+            <div class="competency-card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div class="card-title-wrapper">
+                        <div class="card-number">12</div>
+                        <div class="card-title">CHUYÊN MÔN TIÊN PHONG</div>
+                        <div class="card-subtitle">Functional Expertise</div>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-definition">
+                        <strong>Định nghĩa:</strong>
+                        <p>Chuyên môn sâu, dùng để giải ca khó, nghiên cứu xu hướng, đổi mới và đào tạo lại đội ngũ.</p>
+                    </div>
+                    <div class="levels-table">
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 1</span>
+                                Yếu chuyên môn
+                            </div>
+                            <div class="level-description">
+                                Không nắm vững chuyên môn của mảng quản lý. Không giải quyết được vấn đề, phải nhờ nhân viên. Mất uy tín.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 2</span>
+                                Chuyên môn trung bình
+                            </div>
+                            <div class="level-description">
+                                Biết cơ bản nhưng không sâu. Giải quyết được việc thường ngày nhưng bó tay với ca khó. Không theo kịp xu hướng.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 3</span>
+                                Chuyên gia chắc chắn
+                            </div>
+                            <div class="level-description">
+                                Chuyên môn vững, được respect. Giải quyết được 80% ca khó. Đào tạo được nhân viên. Chưa chủ động nghiên cứu xu hướng mới.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 4</span>
+                                Chuyên gia dẫn đầu
+                            </div>
+                            <div class="level-description">
+                                Top 10% trong mảng (công ty hoặc industry). Giải được mọi ca khó. Chủ động học (conference, research). Đưa innovation vào phòng ban. Đào tạo đội lên level mới.
+                            </div>
+                        </div>
+                        <div class="level-row">
+                            <div class="level-label">
+                                <span class="level-number">Level 5</span>
+                                Thought Leader
+                            </div>
+                            <div class="level-description">
+                                Được công nhận expert trong ngành (speaking, writing, consulting). Định hình trend, không chỉ follow. R&D liên tục, tạo best practices mới. Build IP cho công ty (frameworks, methodologies). Mentor cho cả industry. Network với top experts toàn cầu. Publish research được industry reference. Personal brand = company brand.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <strong>Last updated:</strong> May 2026 | <strong>Owner:</strong> People Team | <strong>Version:</strong> 1.0
+    </div>
+</div>
+
+<script>
+    function toggleCard(header) {
+        const card = header.parentElement;
+        card.classList.toggle('active');
+    }
+
+    let allExpanded = false;
+    function toggleAll() {
+        const cards = document.querySelectorAll('.competency-card');
+        const btn = document.querySelector('.expand-all-btn');
+        
+        if (!allExpanded) {
+            cards.forEach(card => card.classList.add('active'));
+            btn.textContent = '▲ Thu gọn tất cả';
+            allExpanded = true;
+        } else {
+            cards.forEach(card => card.classList.remove('active'));
+            btn.textContent = '▼ Mở rộng tất cả';
+            allExpanded = false;
+        }
+    }
+</script>
+
+</body>
+</html>
