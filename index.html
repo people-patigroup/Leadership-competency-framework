@@ -248,6 +248,290 @@
             font-size: 12px;
         }
 
+        /* PART SECTION COLLAPSIBLE */
+        .part-section {
+            margin: 40px 0;
+            border: 3px solid #e5e5e5;
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .part-header {
+            background: linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%);
+            padding: 25px 30px;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+            border-bottom: 2px solid #e5e5e5;
+        }
+
+        .part-header:hover {
+            background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
+        }
+
+        .part-toggle-icon {
+            font-size: 28px;
+            color: #666;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            margin-left: 20px;
+        }
+
+        .part-section .part-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            background: white;
+        }
+
+        .part-section .part-content.active {
+            max-height: 50000px;
+        }
+
+        .part-section.collapsed .part-toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        /* MAPPING TABLE STYLES */
+        .mapping-section {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 3px solid #8b5cf6;
+        }
+
+        .mapping-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .mapping-title {
+            font-size: 32px;
+            color: #8b5cf6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .mapping-subtitle {
+            color: #666;
+            font-size: 16px;
+            font-style: italic;
+        }
+
+        .value-discipline-box {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px solid #8b5cf6;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 35px;
+            text-align: center;
+        }
+
+        .value-discipline-text {
+            font-size: 18px;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .value-discipline-text .dominance {
+            color: #8b5cf6;
+        }
+
+        .value-discipline-text .threshold {
+            color: #666;
+        }
+
+        .mapping-table-container {
+            overflow-x: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .mapping-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        .mapping-table thead {
+            background: #8b5cf6;
+            color: white;
+        }
+
+        .mapping-table th {
+            padding: 16px 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .mapping-table th:first-child {
+            width: 50%;
+        }
+
+        .mapping-table th:nth-child(2),
+        .mapping-table th:nth-child(3) {
+            width: 25%;
+            text-align: center;
+        }
+
+        .mapping-table tbody tr {
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s;
+            position: relative;
+        }
+
+        .mapping-table tbody tr:hover {
+            background: #faf5ff;
+            z-index: 1;
+        }
+
+        .mapping-table td {
+            padding: 16px;
+            font-size: 13px;
+        }
+
+        .competency-name {
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 3px;
+            font-size: 14px;
+        }
+
+        .competency-group {
+            font-size: 11px;
+            color: #666;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .group-dominance {
+            color: #8b5cf6;
+            font-weight: 600;
+        }
+
+        .group-threshold {
+            color: #f59e0b;
+        }
+
+        .group-people {
+            color: #10b981;
+        }
+
+        .level-cell {
+            text-align: center;
+            position: relative;
+        }
+
+        .level-badge {
+            display: inline-block;
+            min-width: 45px;
+            padding: 8px 14px;
+            background: #f8f8f8;
+            border: 2px solid #e5e5e5;
+            border-radius: 8px;
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+            cursor: help;
+            position: relative;
+            transition: all 0.2s;
+            overflow: visible;
+        }
+
+        .level-badge:hover {
+            background: #8b5cf6;
+            color: white;
+            border-color: #8b5cf6;
+            transform: scale(1.1);
+        }
+
+        .level-badge .tooltip {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            top: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1a1a1a;
+            color: white;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 400;
+            white-space: normal;
+            max-width: 280px;
+            min-width: 200px;
+            z-index: 10000;
+            transition: opacity 0.3s, visibility 0.3s;
+            text-align: left;
+            line-height: 1.5;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            pointer-events: none;
+        }
+
+        .level-badge .tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-bottom-color: #1a1a1a;
+        }
+
+        .level-badge:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .mapping-legend {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        .legend-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1a1a1a;
+        }
+
+        .legend-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        .legend-dominance {
+            background: #8b5cf6;
+        }
+
+        .legend-threshold {
+            background: #f59e0b;
+        }
+
+        .legend-people {
+            background: #10b981;
+        }
+
         @media (max-width: 1200px) {
             .competency-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -267,6 +551,36 @@
                 grid-template-columns: 1fr;
                 gap: 10px;
             }
+
+            .mapping-table th,
+            .mapping-table td {
+                padding: 10px 8px;
+                font-size: 12px;
+            }
+
+            .competency-name {
+                font-size: 13px;
+            }
+
+            .competency-group {
+                font-size: 10px;
+            }
+
+            .level-badge {
+                min-width: 35px;
+                padding: 6px 10px;
+                font-size: 18px;
+            }
+
+            .level-badge .tooltip {
+                max-width: 200px;
+                font-size: 11px;
+                padding: 8px 10px;
+            }
+
+            .legend-items {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -283,6 +597,16 @@
     <div class="hero-box">
         <p><strong>Cách sử dụng:</strong> Đánh giá từng năng lực theo thang 1-5. <strong>Level 3 = yêu cầu tối thiểu</strong> cho vị trí quản lý.</p>
     </div>
+
+    <!-- PART 1 TITLE -->
+    <div class="part-section">
+        <div class="part-header" onclick="togglePart(this)">
+            <h2 style="font-size: 28px; color: #10b981; font-weight: 700; margin: 0;">PHẦN 1. KHUNG NĂNG LỰC LÃNH ĐẠO</h2>
+            <span class="part-toggle-icon">▼</span>
+        </div>
+        <div class="part-content active">
+            <div style="padding: 30px;">
+                <p style="color: #666; font-size: 15px; font-style: italic; text-align: center; margin-bottom: 25px;">12 Năng lực × 5 Levels - Framework chi tiết</p>
 
     <!-- Expand All Button -->
     <button class="expand-all-btn" onclick="toggleAll()">▼ Mở rộng tất cả</button>
@@ -1085,12 +1409,306 @@
                     </div>
                 </div>
             </div>
+            </div>
+        </div>
+            </div>
         </div>
     </div>
+    <!-- END PART 1 -->
+
+    <!-- PHẦN 2: MAPPING TIÊU CHUẨN NĂNG LỰC -->
+    <div class="part-section">
+        <div class="part-header" onclick="togglePart(this)">
+            <h2 style="font-size: 28px; color: #8b5cf6; font-weight: 700; margin: 0;">PHẦN 2. MAPPING TIÊU CHUẨN NĂNG LỰC LÃNH ĐẠO PATI</h2>
+            <span class="part-toggle-icon">▼</span>
+        </div>
+        <div class="part-content active">
+            <div style="padding: 30px;">
+                <p style="color: #666; font-size: 15px; font-style: italic; text-align: center; margin-bottom: 25px;">Áp dụng theo Value Discipline Framework</p>
+
+    <div class="mapping-section">
+        <!-- Value Discipline Box -->
+        <div class="value-discipline-box">
+            <div class="value-discipline-text">
+                <span class="dominance">Product Leadership (Dominance)</span> + 
+                <span class="threshold">OE & CI (Threshold)</span>
+            </div>
+        </div>
+
+        <!-- Mapping Table -->
+        <div class="mapping-table-container">
+            <table class="mapping-table">
+                <thead>
+                    <tr>
+                        <th>Năng lực</th>
+                        <th>Manager</th>
+                        <th>C-Level</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- NHÓM: CHUYÊN MÔN TIÊN PHONG (DOMINANCE) -->
+                    <tr>
+                        <td>
+                            <div class="competency-name">Chuyên môn tiên phong</div>
+                            <div class="competency-group group-dominance">🎯 Dominance (Trọng tâm tuyệt đối)</div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                4
+                                <span class="tooltip">Top 10% trong mảng, chủ động học trend, đưa innovation vào phòng ban</span>
+                            </div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                5
+                                <span class="tooltip">Thought Leader, định hình trend, tạo lợi thế cạnh tranh không thể sao chép</span>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- NHÓM: QUẢN LÝ & HỆ THỐNG (THRESHOLD 1 - OE) -->
+                    <tr>
+                        <td>
+                            <div class="competency-name">Thiết lập mục tiêu</div>
+                            <div class="competency-group group-threshold">⚙️ Threshold 1 (OE - Đủ tốt, không quá cao)</div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                4
+                                <span class="tooltip">Bóc tách dựa data, cân đối trade-off, có leading & lagging indicators</span>
+                            </div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                4
+                                <span class="tooltip">Mục tiêu aggressive nhưng achievable, khuyến khích đột phá</span>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="competency-name">Lập kế hoạch</div>
+                            <div class="competency-group group-threshold">⚙️ Threshold 1 (OE)</div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                4
+                                <span class="tooltip">Kế hoạch chặt chẽ: có dependency, critical path, plan B</span>
+                            </div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                4
+                                <span class="tooltip">Kế hoạch chiến lược, agile, không cứng nhắc</span>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="competency-name">Tổ chức bộ máy và công việc</div>
+                            <div class="competency-group group-threshold">⚙️ Threshold 1 (OE)</div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                3
+                                <span class="tooltip">Cấu trúc cơ bản rõ ràng, org chart & JD đầy đủ</span>
+                            </div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                4
+                                <span class="tooltip">Thiết kế scalable, linh hoạt cho innovation</span>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="competency-name">Xây dựng quy trình, quy định</div>
+                            <div class="competency-group group-threshold">⚙️ Threshold 1 (OE)</div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                3
+                                <span class="tooltip">Quy trình cơ bản cho công việc lặp lại, có flow chart rõ ràng</span>
+                            </div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                4
+                                <span class="tooltip">Process vừa đủ, không bóp nghẹt sáng tạo</span>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="competency-name">Đảm bảo nguồn lực</div>
+                            <div class="competency-group group-threshold">⚙️ Threshold 1 (OE)</div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                4
+                                <span class="tooltip">Đàm phán win-win, chứng minh ROI cho R&D</span>
+                            </div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                5
+                                <span class="tooltip">Đầu tư mạnh cho R&D, không siết chi phí sớm</span>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="competency-name">Kiểm soát và quản trị rủi ro</div>
+                            <div class="competency-group group-threshold">⚙️ Threshold 1 (OE)</div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                4
+                                <span class="tooltip">Leading indicators, risk register & mitigation plan</span>
+                            </div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                4
+                                <span class="tooltip">Balance giữa risk-taking và safety</span>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- NHÓM: QUẢN TRỊ CON NGƯỜI (DNA ĐỔI MỚI) -->
+                    <tr>
+                        <td>
+                            <div class="competency-name">Tuyển dụng và xây dựng đội ngũ</div>
+                            <div class="competency-group group-people">🌱 DNA Đổi mới (Phục vụ PL Dominance - Cao)</div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                4
+                                <span class="tooltip">Tuyển potential, có pipeline, employer branding mạnh</span>
+                            </div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                5
+                                <span class="tooltip">Tuyển người giỏi hơn mình, creative talents, diverse team</span>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="competency-name">Đào tạo và kèm cặp</div>
+                            <div class="competency-group group-people">🌱 DNA Đổi mới</div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                4
+                                <span class="tooltip">Coaching theo GROW, nâng cấp mindset, giao bài tập khó</span>
+                            </div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                5
+                                <span class="tooltip">Kiến tạo văn hóa học tập, không gian an toàn cho thử nghiệm</span>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="competency-name">Đánh giá và khích lệ</div>
+                            <div class="competency-group group-people">🌱 DNA Đổi mới</div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                4
+                                <span class="tooltip">Continuous feedback, hiểu motivation từng người</span>
+                            </div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                5
+                                <span class="tooltip">Celebrate learning & effort, không chỉ results</span>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- NHÓM: GIAO TIẾP & LÃNH ĐẠO (THRESHOLD 2 - CI) -->
+                    <tr>
+                        <td>
+                            <div class="competency-name">Giao tiếp</div>
+                            <div class="competency-group group-threshold">💬 Threshold 2 (CI - Đủ tốt)</div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                4
+                                <span class="tooltip">Ngắn gọn đầy đủ, dùng framework, active listening</span>
+                            </div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                4
+                                <span class="tooltip">Storytelling, thuyết phục vision</span>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="competency-name">Truyền cảm hứng</div>
+                            <div class="competency-group group-threshold">💬 Threshold 2 (CI)</div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                4
+                                <span class="tooltip">Connect công việc với purpose, inspire bằng hành động</span>
+                            </div>
+                        </td>
+                        <td class="level-cell">
+                            <div class="level-badge">
+                                5
+                                <span class="tooltip">Transformational Leader, định hướng tầm nhìn, lôi kéo nhân tài</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Legend -->
+        <div class="mapping-legend">
+            <div class="legend-title">📊 Phân nhóm theo Value Discipline:</div>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <div class="legend-color legend-dominance"></div>
+                    <span><strong>Dominance (PL):</strong> Chuyên môn tiên phong - Trọng tâm tuyệt đối</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color legend-threshold"></div>
+                    <span><strong>Threshold (OE & CI):</strong> Quản lý hệ thống & Giao tiếp - Đủ tốt</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color legend-people"></div>
+                    <span><strong>DNA Đổi mới:</strong> Quản trị người - Cao (phục vụ PL)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MAPPING SECTION -->
+            </div>
+        </div>
+    </div>
+    <!-- END PART 2 -->
 
     <!-- Footer -->
     <div class="footer">
-        <strong>Last updated:</strong> May 2026 | <strong>Owner:</strong> People Team | <strong>Version:</strong> 1.0
+        <strong>Last updated:</strong> May 2026 | <strong>Owner:</strong> People Team | <strong>Version:</strong> 2.0
     </div>
 </div>
 
@@ -1098,6 +1716,14 @@
     function toggleCard(header) {
         const card = header.parentElement;
         card.classList.toggle('active');
+    }
+
+    function togglePart(header) {
+        const section = header.parentElement;
+        const content = section.querySelector('.part-content');
+        
+        content.classList.toggle('active');
+        section.classList.toggle('collapsed');
     }
 
     let allExpanded = false;
